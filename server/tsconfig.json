@@ -9,5 +9,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "exclude": ["eslint.config*.mts", "node_modules"]
+  "exclude": ["eslint.config.mts", "node_modules"]
 }

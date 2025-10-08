@@ -4,6 +4,7 @@ node_modules/
 .yarn/
 .yarnrc.yml
 .pnp.*
+uploads/
 
 # Build outputs
 dist/
@@ -24,6 +25,7 @@ out/
 *.env.test
 .env.*
 deploy/
+
 
 # Logs & debug
 npm-debug.log*
