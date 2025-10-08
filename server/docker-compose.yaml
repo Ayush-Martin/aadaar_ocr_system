@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ayushmartin/aadaar_orc_system:latest
+    image: ayushmartin/aadhaar_orc_system:latest
     restart: always
     container_name: backend
     env_file:

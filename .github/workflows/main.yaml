@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_NAME: ayushmartin/aadaar_ocr_system:latest
+  IMAGE_NAME: ayushmartin/aadhaar_ocr_system:latest
 
 jobs:
   # ---- client ----
@@ -43,7 +43,7 @@ jobs:
 
       - name: Deploy to Vercel
         working-directory: client
-        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} --name aadaar_ocr_system
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} --name aadhaar_ocr_system
 
   # ---- server ----
   build-server:
@@ -105,7 +105,7 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
           source: "server/docker-compose.yaml,server/.env,server/deploy.sh"
-          target: "~/aadaar_ocr_system"
+          target: "~/aadhaar_ocr_system"
 
       - name: Run deploy.sh on EXC
         uses: appleboy/ssh-action@v0.1.6
@@ -115,7 +115,7 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             ls
-            cd ~/aadaar_ocr_system/server
+            cd ~/aadhaar_ocr_system/server
             ls
             chmod +x deploy.sh
             ./deploy.sh

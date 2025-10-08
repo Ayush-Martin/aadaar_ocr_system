@@ -1,7 +1,7 @@
 #!/bin/bash
 
-APP_DIR=~/aadaar_ocr_system/server
-PROJECT_NAME=aadaar_ocr_system
+APP_DIR=~/aadhaar_ocr_system/server
+PROJECT_NAME=aadhaar_ocr_system
 
 echo "📦 Switching to app directory: $APP_DIR"
 cd $APP_DIR || { echo "❌ Directory not found"; exit 1; }
