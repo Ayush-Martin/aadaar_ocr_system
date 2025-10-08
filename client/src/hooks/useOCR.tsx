@@ -25,8 +25,12 @@ const useOCR = () => {
 
     setLoading(true);
 
+    const formData = new FormData();
+    formData.append("images", frontImage);
+    formData.append("images", backImage);
+
     try {
-      const res = await appApi.get("/parse");
+      const res = await appApi.post("/ocr/parse", formData);
       if (!res) return;
       setResponse(res.data);
     } catch (err) {

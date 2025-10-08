@@ -10,11 +10,11 @@ interface IDetailsProps {
     gender: string;
     uid: string;
     address: string;
-    pincode: number;
+    pincode: string;
     age: number;
     maskedMobileNumber: string;
     isUidSame: boolean;
-    age_band: string;
+    ageBand: string;
   };
 }
 
@@ -111,7 +111,7 @@ const Details: FC<IDetailsProps> = ({ loading, parsed, success, data }) => {
           <div>
             <h2 className="text-text-secondary font-semibold">Age Band</h2>
             <p className="mt-1 text-text-primary border-b border-gray-300 pb-1">
-              {data?.age_band || "N/A"}
+              {data?.ageBand || "N/A"}
             </p>
           </div>
         </div>
