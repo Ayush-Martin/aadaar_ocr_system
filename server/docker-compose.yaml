@@ -2,7 +2,7 @@ services:
   backend:
     image: ayushmartin/aadhaar_ocr_system:latest
     restart: always
-    container_name: backend
+    container_name: aadhaar_ocr_system
     env_file:
       - .env
     ports:
