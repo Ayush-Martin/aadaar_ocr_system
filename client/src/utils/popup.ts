@@ -9,7 +9,7 @@ export const successPopup = (message: string) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "dark",
+    theme: "light",
     transition: Bounce,
   });
 };
@@ -23,7 +23,7 @@ export const errorPopup = (message: string) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "dark",
+    theme: "light",
     transition: Bounce,
   });
 };
