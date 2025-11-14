@@ -1,6 +1,8 @@
 import App from "./app";
 import http from "http";
 import "reflect-metadata";
+import { config } from "dotenv";
+config();
 
 import { envConfig } from "./shared/config/env";
 
