@@ -3,7 +3,7 @@ import { binder } from "../../../shared/utils/binder";
 import { NextFunction, Request, Response } from "express";
 import { TYPES } from "../../../infrastructure/container/types";
 import { IExtractTextUseCase } from "../../../application/interface/useCase/IExtractText.useCase";
-import { IFileStorageService } from "../../../application/interface/service/IFileStorage.service";
+import { IFileStorageService } from "../../../application/interface/service/infraStructureService/IFileStorage.service";
 import { IAadhaarValidationUseCase } from "../../../application/interface/useCase/IAadhaarValidation.useCase";
 import { IAadhaarDataExtractionUseCase } from "../../../application/interface/useCase/IAadhaarDataExtraction.useCase";
 import { StatusCodes } from "../../../shared/constants/statusCodes";
@@ -25,6 +25,16 @@ class OCRController {
     binder(this);
   }
 
+  /**
+   * This function is used to extract aadhaar details
+   * - It takes front and back images as input
+   * - Extract raw text from front and back images
+   * - Validate the raw text
+   * - Extract aadhaar details
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async extractAadhaarDetails(
     req: Request,
     res: Response,

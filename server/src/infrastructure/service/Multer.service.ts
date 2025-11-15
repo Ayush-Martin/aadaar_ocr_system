@@ -1,7 +1,7 @@
 import multer from "multer";
 import fs from "fs";
 import path from "path";
-import { IFileStorageService } from "../../application/interface/service/IFileStorage.service";
+import { IFileStorageService } from "../../application/interface/service/infraStructureService/IFileStorage.service";
 import { Request, Response, NextFunction } from "express";
 import { injectable } from "inversify";
 
@@ -14,6 +14,10 @@ class MulterService implements IFileStorageService {
     this.upload = multer({ storage });
   }
 
+  /**
+   * Create a disk storage for multer
+   * @returns
+   */
   private getStorage() {
     return multer.diskStorage({
       destination: (req, file, cb) => {
@@ -29,6 +33,12 @@ class MulterService implements IFileStorageService {
     });
   }
 
+  /**
+   * This function returns the middleware for multer
+   * @param filedName
+   * @param maxCount
+   * @returns
+   */
   public getUploadMiddleware(
     filedName: string,
     maxCount: number
@@ -36,11 +46,20 @@ class MulterService implements IFileStorageService {
     return this.upload.array(filedName, maxCount);
   }
 
+  /**
+   * This function returns the paths of the uploaded images
+   * @param req
+   * @returns
+   */
   public getImagePaths(req: Request): string[] {
     const files = req.files as Express.Multer.File[] | undefined;
     return files?.map((file) => file.path) || [];
   }
 
+  /**
+   * It deletes the images based on the given paths
+   * @param paths
+   */
   public async deleteImages(paths: string[]): Promise<void> {
     await Promise.all(
       paths.map(
