@@ -1,10 +1,16 @@
-import AadhaarDataExtractionUseCase from "../../application/useCase/aadhaarDataExtraction.useCase";
-
 export const TYPES = {
-  //services
+  //Infrastructure Services
   OCRService: Symbol.for("OCRService"),
   FileStorageService: Symbol.for("FileStorageService"),
-  AadhaarDataExtractionService: Symbol.for("AadhaarDataExtractionService"),
+
+  //Domain Services
+  AadhaarNumberExtractionService: Symbol.for("AadhaarNumberExtractionService"),
+  GenderExtractionService: Symbol.for("GenderExtractionService"),
+  DOBExtractionService: Symbol.for("DOBExtractionService"),
+  NameExtractionService: Symbol.for("NameExtractionService"),
+  AddressExtractionService: Symbol.for("AddressExtractionService"),
+  PincodeExtractionService: Symbol.for("PincodeExtractionService"),
+  AadhaarValidationService: Symbol.for("AadhaarValidationService"),
 
   //usecases
   ExtractTextUseCase: Symbol.for("ExtractTextUseCase"),

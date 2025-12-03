@@ -1,19 +1,26 @@
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import { IAadhaarValidationUseCase } from "../interface/useCase/IAadhaarValidation.useCase";
-import {
-  AADHAAR_BACK_PAGE_KEY_WORDS,
-  AADHAAR_FRONT_PAGE_KEY_WORDS,
-} from "../../shared/constants/aadhaarKeywords";
 import errorCreator from "../../shared/utils/errorCreator";
 import { OCRResponseMessages } from "../../shared/constants/responseMessages";
 import { StatusCodes } from "../../shared/constants/statusCodes";
+import { TYPES } from "../../infrastructure/container/types";
+import { IAadhaarValidationService } from "../interface/service/domainService/IAadhaarValidation.service";
 
 @injectable()
 class AadhaarValidationUseCase implements IAadhaarValidationUseCase {
+  constructor(
+    @inject(TYPES.AadhaarValidationService)
+    private _aadhaarValidationService: IAadhaarValidationService
+  ) {}
+
+  /**
+   * Takes raw text from front and back page and checks if they are valid
+   * @param frontText
+   * @param backText
+   */
   public async execute(frontText: string, backText: string): Promise<void> {
-    const isValidFrontPage = AADHAAR_FRONT_PAGE_KEY_WORDS.some((word) =>
-      frontText.includes(word)
-    );
+    const isValidFrontPage =
+      this._aadhaarValidationService.validateFrontPage(frontText);
 
     if (!isValidFrontPage)
       throw errorCreator(
@@ -21,9 +28,8 @@ class AadhaarValidationUseCase implements IAadhaarValidationUseCase {
         StatusCodes.BAD_REQUEST
       );
 
-    const isValidBackPage = AADHAAR_BACK_PAGE_KEY_WORDS.some((word) =>
-      backText.includes(word)
-    );
+    const isValidBackPage =
+      this._aadhaarValidationService.validateBackPage(backText);
 
     if (!isValidBackPage)
       throw errorCreator(
